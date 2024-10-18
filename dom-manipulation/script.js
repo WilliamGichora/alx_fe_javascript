@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    function displayRandomQuote() {
+    function showRandomQuote() {
         const index = Math.floor(Math.random() * quotes.length)
         console.log(index);
 
