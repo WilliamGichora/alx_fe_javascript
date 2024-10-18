@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showQuoteBtn.addEventListener('click', showRandomQuote)
     
-    addNewQuoteBtn.addEventListener('click', addQuote)
+    addNewQuoteBtn.addEventListener('click', createAddQuoteForm)
 
-    function addQuote() {
+    function createAddQuoteForm() {
         const inputText = newQuoteInput.value.trim()
         const newCategoryText = newQuoteCategory.value.trim()
 
