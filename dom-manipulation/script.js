@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(index);
 
         const quoteParagraph = quotes[index]
-        quoteContainer.textContent = quoteParagraph.text
+        quoteContainer.innerHTML = quoteParagraph.text
     }
 
 })
