@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Motivational"
         }]
 
-    showQuoteBtn.addEventListener('click', displayRandomQuote)
+    showQuoteBtn.addEventListener('click', showRandomQuote)
     
     addNewQuoteBtn.addEventListener('click', addQuote)
 
