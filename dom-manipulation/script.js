@@ -42,6 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
         newQuoteInput.value = '';
         newQuoteCategory.value = '';
 
+        const newQuoteDiv = document.createElement('div')
+        const newQouteP = document.createElement('p')
+        newQouteP.innerHTML = `${newQuote.text} <br/> ${newQuote.category}`
+        newQuoteDiv.appendChild(newQouteP)
+        document.querySelector('body').appendChild(newQuoteDiv)
+
     }
 
     function showRandomQuote() {
