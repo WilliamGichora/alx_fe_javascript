@@ -226,4 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function startPeriodicSync(interval = 60000) {
+        setInterval(fetchQuotesFromServer, interval);
+    }
+
 })
