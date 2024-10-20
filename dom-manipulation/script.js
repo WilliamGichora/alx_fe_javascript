@@ -195,7 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`)
             }
-            const quotes = await response.json()
+            const serverQuotes = await response.json();
+            syncQuotes(serverQuotes);
         } catch (error) {
             console.error(error);
 
