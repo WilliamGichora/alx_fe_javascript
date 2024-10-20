@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchQuotesFromServer() {
-        const url = 'https://jsonplaceholder.org/quotes'
+        const url = "https://jsonplaceholder.typicode.com/posts"
 
         try {
             const response = await fetch(url)
