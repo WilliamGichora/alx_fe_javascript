@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (conflictFound) {
             alert('Data synced with server, and conflicts were resolved using server data.');
         } else {
-            alert('Data synced successfully.');
+            alert("Quotes synced with server!");
         }
     }
 
