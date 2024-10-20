@@ -12,10 +12,19 @@
     <div id="quoteDisplay"></div>
     <button id="newQuote">Show New Quote</button>
 
-    <div>
+    <div id="form">
         <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
         <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
         <button id="addNewQuoteBtn">Add Quote</button>
+    </div>
+
+    <br>
+    <button id="downloadQuotes">Export Your Quotes</button>
+
+    <br>
+    
+    <div>
+        <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
     </div>
 
     <script src="./script.js"></script>
