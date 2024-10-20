@@ -12,24 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
     populateCategories()
     loadQuotes();
 
-    const storedQuotes = JSON.parse(localStorage.getItem('quotes') || '[]');
-    const lastSelectedCategory = localStorage.getItem('lastSelectedCategory') || 'all'
-
-    if (lastSelectedCategory === 'all') {
-        storedQuotes.forEach(quote => displayQuote(quote))
-    } else {
-        const categoryQuotes = storedQuotes.filter(quote => quote.category === lastSelectedCategory)
-        categoryQuotes.forEach(quote => displayQuote(quote))
-    }
+    const lastSelectedCategory = localStorage.getItem('lastSelectedCategory') || 'all';
+    categoryFilter.value = lastSelectedCategory
+    filterQuotes();
 
     showQuoteBtn.addEventListener('click', showRandomQuote)
-
     addNewQuoteBtn.addEventListener('click', createAddQuoteForm)
-
     downloadQuoteBtn.addEventListener('click', downloadAllQuotes)
-
     document.getElementById('importFile').addEventListener('change', importFromJsonFile)
-
     categoryFilter.addEventListener('change', filterQuotes)
 
 
@@ -170,25 +160,37 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
         const lastSelectedCategory = localStorage.getItem('lastSelectedCategory') || 'all';
-        categoryFilter.value = lastSelectedCategory;
+        categoryFilter.value = lastSelectedCategory
     }
 
-    function filterQuotes() {
+    function filterQuotes(category) {
         const storedQuotes = JSON.parse(localStorage.getItem('quotes') || '[]')
-        const selectedCategory = this.value
+        const selectedCategory = categoryFilter.value
         const categoryQuotes = storedQuotes.filter(quote => quote.category === selectedCategory)
 
         quoteContainer.innerHTML = ''
 
-        if (this.value === 'all') {
+        if (selectedCategory === 'all') {
             storedQuotes.forEach(quote => displayQuote(quote))
         } else {
             categoryQuotes.forEach(quote => displayQuote(quote))
 
         }
 
-        localStorage.setItem('LastSelectedCategory', selectedCategory)
+        localStorage.setItem('lastSelectedCategory', selectedCategory)
 
+    }
+
+    async function fetchQuotesFromServer() {
+        const url = 'https://jsonplaceholder.org/quotes'
+
+        try {
+            const response = await fetch(url)
+            const quotes = await response.json()
+        } catch (error) {
+            console.error(error);
+            
+        }
     }
 
 })
