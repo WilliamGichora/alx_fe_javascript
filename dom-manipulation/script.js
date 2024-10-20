@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body:JSON.stringify(quote)
+                body: JSON.stringify(quote)
             })
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`)
@@ -198,7 +198,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const quotes = await response.json()
         } catch (error) {
             console.error(error);
-            
+
+        }
+    }
+
+    function syncQuotes(serverQuotes) {
+        const localQuotes = JSON.parse(localStorage.getItem('quotes') || '[]');
+
+        let updatedQuotes = [...serverQuotes];
+
+        const conflictFound = localQuotes.some(localQuote => {
+            return !serverQuotes.find(serverQuote => serverQuote.text === localQuote.text && serverQuote.category === localQuote.category);
+        });
+
+        localQuotes.forEach(localQuote => {
+            if (!serverQuotes.some(serverQuote => serverQuote.text === localQuote.text && serverQuote.category === localQuote.category)) {
+                updatedQuotes.push(localQuote);
+            }
+        });
+
+        localStorage.setItem('quotes', JSON.stringify(updatedQuotes));
+
+        if (conflictFound) {
+            alert('Data synced with server, and conflicts were resolved using server data.');
+        } else {
+            alert('Data synced successfully.');
         }
     }
 
