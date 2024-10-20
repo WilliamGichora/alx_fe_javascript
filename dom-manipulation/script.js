@@ -181,11 +181,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    async function fetchQuotesFromServer() {
+    async function fetchQuotesFromServer(quote) {
         const url = "https://jsonplaceholder.typicode.com/posts"
 
         try {
-            const response = await fetch(url)
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(quote)
+            })
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`)
+            }
             const quotes = await response.json()
         } catch (error) {
             console.error(error);
